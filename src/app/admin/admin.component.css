@@ -1,0 +1,96 @@
+.section-title {
+  text-align: center; /* Centre le texte du titre */
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px; /* Espace sous le titre */
+}
+
+/* Section des Événements */
+.events-section {
+  margin-bottom: 40px; /* Espace entre les sections */
+}
+
+/* Section des Utilisateurs */
+.users-section {
+  margin-bottom: 40px; /* Espace entre les sections */
+}
+
+/* Conteneur des cartes */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Centre horizontalement les cartes */
+}
+
+/* Cartes des Événements */
+.event-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.event-card mat-card-header {
+  background-color:darkkhaki;
+  color: #fff;
+}
+
+.event-card mat-card-actions {
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  padding: 8px;
+}
+
+.event-card button {
+  width: 45%;
+}
+
+.event-card button.mat-raised-button {
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 8px;
+}
+
+/* Cartes des Utilisateurs */
+.user-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.user-card mat-card-header {
+  background-color: coral;
+  color: #fff;
+}
+
+.user-card mat-card-actions {
+  justify-content: center;
+  background-color: #f9f9f9;
+  padding: 8px;
+}
+
+.user-card button {
+  width: 100%;
+}
+
+.user-card button.mat-raised-button {
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 8px;
+}
+
+/* Adaptation pour les petits écrans */
+@media (max-width: 600px) {
+  .card-container {
+    flex-direction: column;
+  }
+}

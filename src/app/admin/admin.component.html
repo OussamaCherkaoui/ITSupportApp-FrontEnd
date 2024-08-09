@@ -1,0 +1,15 @@
+<!-- Section des Utilisateurs -->
+<div class="users-section">
+  <h2 class="section-title">Utilisateurs</h2>
+  <div class="card-container">
+    <mat-card *ngFor="let user of users" class="user-card">
+      <mat-card-header>
+        <mat-card-title>{{ user.username }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Email :</strong> {{ user.email }}</p>
+        <p><strong>Téléphone :</strong> {{ user.phone }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
