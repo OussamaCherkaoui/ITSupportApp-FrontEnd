@@ -28,7 +28,7 @@ import {RegisterService} from "../Services/register.service";
 export class SignUpComponent implements OnInit{
   signUpForm: FormGroup;
   user : User = {
-    email: '', idUser: 0, password: '', phone: '', role: Role.CLIENT, username: ''
+    email: '', idUser: 0, password: '', telephone: '', role: Role.USER, username: ''
   }
   message:  string = '';
 
@@ -45,11 +45,11 @@ export class SignUpComponent implements OnInit{
     this.user.username = this.signUpForm.get('username')?.value;
     this.user.email = this.signUpForm.get('email')?.value;
     this.user.password = this.signUpForm.get('password')?.value;
-    this.user.phone = this.signUpForm.get('phone')?.value;
+    this.user.telephone = this.signUpForm.get('phone')?.value;
 
-    if (this.user.username && this.user.email && this.user.password && this.user.phone) {
+    if (this.user.username && this.user.email && this.user.password && this.user.telephone) {
       if (this.signUpForm.valid) {
-        this.registerService.registerAdmin(this.user).subscribe(data=>{
+        this.registerService.registerUser(this.user).subscribe(data=>{
           console.log(data);
           this.message='Compte créer avec succées';
         });

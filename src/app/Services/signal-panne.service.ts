@@ -10,14 +10,11 @@ import {Equipement} from "../models/equipement";
 })
 export class SignalPanneService {
 
-  private apiUrlAdmin: string;
-  private apiUrlUser: string;
-  private apiUrlTechnicien: string;
+  private apiUrl: string;
+
 
   constructor(private http: HttpClient) {
-    this.apiUrlAdmin = 'http://localhost:8081/admin';
-    this.apiUrlUser = 'http://localhost:8081/user';
-    this.apiUrlTechnicien = 'http://localhost:8081/technicien';
+    this.apiUrl = 'http://localhost:8081/signalPanne';
   }
 
   private getHeaders(): HttpHeaders {
@@ -31,23 +28,23 @@ export class SignalPanneService {
     });
   }
 
-  public signalPanne(signalPanne:SignalPanne): Observable<any> {
-    return this.http.post<any>(`${this.apiUrlUser}/signalPanne`,signalPanne, { headers: this.getHeaders() });
+  public saveSignalPanne(signalPanne:SignalPanne): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/saveSignalPanne`,signalPanne, { headers: this.getHeaders() });
   }
 
   public getAllSignalPanneByIdUser(id: number | undefined):Observable<any> {
-    return this.http.get<any>(`${this.apiUrlUser}/getAllSignalPannesByIdUser/${id}`, { headers: this.getHeaders() });
+    return this.http.get<any>(`${this.apiUrl}/getAllSignalPannesByIdUser/${id}`, { headers: this.getHeaders() });
   }
   public getAllSignalPanneByIdEquipement(id: number | undefined):Observable<any> {
-    return this.http.get<any>(`${this.apiUrlAdmin}/getAllSignalPannesByIdEquipement/${id}`, { headers: this.getHeaders() });
+    return this.http.get<any>(`${this.apiUrl}/getAllSignalPannesByIdEquipement/${id}`, { headers: this.getHeaders() });
   }
   public getAllSignalPanne():Observable<any> {
-    return this.http.get<any>(`${this.apiUrlAdmin}/getAllSignalPannes`, { headers: this.getHeaders() });
+    return this.http.get<any>(`${this.apiUrl}/getAllSignalPannes`, { headers: this.getHeaders() });
   }
   public getAllSignalPannesByTechnicien(id: number | undefined):Observable<any> {
-    return this.http.get<any>(`${this.apiUrlAdmin}/getAllSignalPannesByTechnicien/${id}`, { headers: this.getHeaders() });
+    return this.http.get<any>(`${this.apiUrl}/getAllSignalPannesByTechnicien/${id}`, { headers: this.getHeaders() });
   }
   public changeEtatSignalPanne(signalPanne:SignalPanne,etat:string): Observable<any> {
-    return this.http.put<any>(`${this.apiUrlTechnicien}/${etat}`,signalPanne, { headers: this.getHeaders() });
+    return this.http.put<any>(`${this.apiUrl}/${etat}`,signalPanne, { headers: this.getHeaders() });
   }
 }

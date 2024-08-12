@@ -49,14 +49,13 @@ export class AuthentificationService {
 
 
   constructor(private http: HttpClient) {
-    this.apiUrl = 'http://localhost:8081/authentification';
+    this.apiUrl = 'http://localhost:8081/utilisateur';
   }
 
 
   public login(authRequest: AuthenticationRequest): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, authRequest).pipe(
       map(response => {
-        console.log(response);
         return response;
       })
     );
@@ -72,4 +71,5 @@ export class AuthentificationService {
   public getUserById(id: any) {
     return this.http.get<any>(`${this.apiUrl}/getUserByIdUser/${id}`, { headers: this.getHeaders() });
   }
+
 }

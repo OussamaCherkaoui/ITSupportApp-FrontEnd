@@ -9,12 +9,10 @@ import {Panne} from "../models/panne";
 })
 export class PanneService {
 
-  private apiUrlAdmin: string;
   private apiUrl: string;
 
   constructor(private http: HttpClient) {
-    this.apiUrlAdmin = 'http://localhost:8081/admin';
-    this.apiUrl = 'http://localhost:8081/forAll';
+    this.apiUrl = 'http://localhost:8081/panne';
   }
 
   private getHeaders(): HttpHeaders {
@@ -33,14 +31,14 @@ export class PanneService {
   }
 
   public savePanne(panne:Panne): Observable<any> {
-    return this.http.post<any>(`${this.apiUrlAdmin}/addPanne`,panne, { headers: this.getHeaders() });
+    return this.http.post<any>(`${this.apiUrl}/addPanne`,panne, { headers: this.getHeaders() });
   }
 
   public updatePanne(panne:Panne): Observable<any> {
-    return this.http.put<any>(`${this.apiUrlAdmin}/updatePanne`,panne, { headers: this.getHeaders() });
+    return this.http.put<any>(`${this.apiUrl}/updatePanne`,panne, { headers: this.getHeaders() });
   }
 
   public deletePanne(id: number | undefined): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrlAdmin}/deletePanne/${id}`, { headers: this.getHeaders() });
+    return this.http.delete<any>(`${this.apiUrl}/deletePanne/${id}`, { headers: this.getHeaders() });
   }
 }

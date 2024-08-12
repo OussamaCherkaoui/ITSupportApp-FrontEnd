@@ -1,96 +1,321 @@
+/* Style général pour la section des équipements */
+.equipement-section,.ticket-section,.signalPanne-section{
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
 .section-title {
-  text-align: center; /* Centre le texte du titre */
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 700;
   color: #333;
-  margin-bottom: 20px; /* Espace sous le titre */
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-/* Section des Événements */
-.events-section {
-  margin-bottom: 40px; /* Espace entre les sections */
-}
-
-/* Section des Utilisateurs */
-.users-section {
-  margin-bottom: 40px; /* Espace entre les sections */
-}
-
-/* Conteneur des cartes */
+/* Conteneur des cartes d'équipements */
 .card-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center; /* Centre horizontalement les cartes */
-}
-
-/* Cartes des Événements */
-.event-card {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  background-color: #fff;
-}
-
-.event-card mat-card-header {
-  background-color:darkkhaki;
-  color: #fff;
-}
-
-.event-card mat-card-actions {
-  justify-content: space-between;
-  background-color: #f9f9f9;
-  padding: 8px;
-}
-
-.event-card button {
-  width: 45%;
-}
-
-.event-card button.mat-raised-button {
-  border-radius: 4px;
-  text-transform: uppercase;
-  font-size: 14px;
-  padding: 8px;
-}
-
-/* Cartes des Utilisateurs */
-.user-card {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  background-color: #fff;
-}
-
-.user-card mat-card-header {
-  background-color: coral;
-  color: #fff;
-}
-
-.user-card mat-card-actions {
   justify-content: center;
-  background-color: #f9f9f9;
-  padding: 8px;
 }
 
-.user-card button {
+/* Style pour chaque carte d'équipement */
+.equipement-card {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.equipement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.mat-card-header {
+  background-color: #00796b;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.mat-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Style pour le contenu de la carte */
+.mat-card-content {
+  padding: 16px;
+}
+
+/* Conteneur d'image avec bordure arrondie */
+.image-container {
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover; /* Assure que l'image couvre le conteneur tout en gardant ses proportions */
+}
+
+/* Style pour les actions en bas de la carte */
+.mat-card-actions {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  background-color: #f1f1f1;
+}
+
+.mat-card-actions button {
+  margin: 4px;
+}
+
+/* Style pour les boutons */
+.mat-raised-button {
+  border-radius: 4px;
+  font-size: 0.875rem;
+  text-transform: none;
+}
+
+/* Style pour le bouton de modification */
+.mat-raised-button[color="primary"] {
+  background-color: #00796b;
+  color: #ffffff;
+}
+
+/* Style pour le bouton de suppression */
+.mat-raised-button[color="warn"] {
+  background-color: #d32f2f;
+  color: #ffffff;
+}
+.add-equipment-action {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Style pour le conteneur du formulaire */
+.form-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+/* Style pour les titres du formulaire */
+.form-equipement-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+/* Style pour les messages du formulaire */
+.message {
+  color: #4caf50;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+/* Style pour les boutons de soumission du formulaire */
+button .mat-raised-button {
+  background-color: #6200ea;
+  color: #ffffff;
+  margin-top: 20px;
+  width: 100%;
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button .mat-raised-button:hover {
+  background-color: #3700b3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Style pour les champs du formulaire en grille */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* Style pour chaque champ de formulaire */
+.form-field {
   width: 100%;
 }
 
-.user-card button.mat-raised-button {
-  border-radius: 4px;
-  text-transform: uppercase;
-  font-size: 14px;
+/* Style pour les champs d'entrée */
+.mat-input-element {
+  font-size: 1rem;
   padding: 8px;
 }
 
-/* Adaptation pour les petits écrans */
+/* Style pour les erreurs de formulaire */
+.mat-error {
+  font-size: 0.875rem;
+  color: #d32f2f;
+}
+
+/* Add to your styles.css or component-specific stylesheet */
+
+.app-toolbar {
+  background-color: #3f51b5; /* Primary color for the toolbar */
+  color: white; /* Text color */
+  justify-content: center; /* Center items horizontally */
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto; /* Flexible spacer to push items to the center */
+}
+
+a {
+  color: white; /* Link color */
+  font-weight: bold; /* Make links bold */
+  margin: 0 15px; /* Space between links */
+}
+
+a:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Slight background on hover */
+  border-radius: 4px; /* Rounded corners for hover effect */
+}
+
+/* Add to your styles.css or component-specific stylesheet */
+
+.panne-section {
+  margin: 20px;
+}
+
+.add-panne-action {
+  margin-bottom: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.panne-card {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-panne-title {
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.message {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.sign-up-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sign-up-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.sign-up-form {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-form-field mat-label {
+  color: #555;
+}
+
+mat-form-field .mat-form-field-infix {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+mat-form-field .mat-form-field-flex {
+  color: #333;
+}
+
+mat-error {
+  color: #f44336;
+}
+
+button.mat-raised-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+button.mat-raised-button:hover {
+  background-color: darkgoldenrod;
+  color: #fff;
+}
+
 @media (max-width: 600px) {
-  .card-container {
-    flex-direction: column;
+  .sign-up-container {
+    width: 90%;
   }
 }
+
+.radio-group-container {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-radio-button {
+  margin-bottom: 8px;
+}
+

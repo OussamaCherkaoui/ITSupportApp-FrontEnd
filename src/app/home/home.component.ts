@@ -54,8 +54,6 @@ export class HomeComponent implements OnInit{
     this.authService.getIdUser().subscribe(
       (userId) => {
         this.idUser = userId;
-        console.log(userId);
-        console.log(this.idUser);
       }
     );
   }

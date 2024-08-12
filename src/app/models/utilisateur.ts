@@ -5,7 +5,7 @@ export class Utilisateur {
   username: string | undefined;
   password: string|undefined;
   email: string|undefined;
-  phone: string|undefined;
+  telephone: string|undefined;
   role?:Role;
 
   constructor(data?: Partial<Utilisateur>) {
@@ -14,7 +14,7 @@ export class Utilisateur {
       this.username = data.username;
       this.password = data.password;
       this.email = data.email;
-      this.phone = data.phone;
+      this.telephone = data.telephone;
       this.role = data.role;
     }
   }

@@ -8,12 +8,10 @@ import {Equipement} from "../models/equipement";
 })
 export class EquipementService {
 
-  private apiUrlAdmin: string;
   private apiUrl: string;
 
   constructor(private http: HttpClient) {
-    this.apiUrlAdmin = 'http://localhost:8081/admin';
-    this.apiUrl = 'http://localhost:8081/forAll';
+    this.apiUrl = 'http://localhost:8081/equipement';
   }
 
   private getHeaders(): HttpHeaders {
@@ -32,18 +30,18 @@ export class EquipementService {
   }
 
   public saveEquipement(equipement:Equipement): Observable<any> {
-    return this.http.post<any>(`${this.apiUrlAdmin}/addEquipement`,equipement, { headers: this.getHeaders() });
+    return this.http.post<any>(`${this.apiUrl}/addEquipement`,equipement, { headers: this.getHeaders() });
   }
 
   public updateEquipement(equipement:Equipement): Observable<any> {
-    return this.http.put<any>(`${this.apiUrlAdmin}/updateEquipement`,equipement, { headers: this.getHeaders() });
+    return this.http.put<any>(`${this.apiUrl}/updateEquipement`,equipement, { headers: this.getHeaders() });
   }
 
   public deleteEquipement(id: number | undefined): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrlAdmin}/deleteEquipement/${id}`, { headers: this.getHeaders() });
+    return this.http.delete<any>(`${this.apiUrl}/deleteEquipement/${id}`, { headers: this.getHeaders() });
   }
   public changeEtatEquipement(equipement:Equipement,etat:string): Observable<any> {
-    return this.http.put<any>(`${this.apiUrlAdmin}/${etat}`,equipement, { headers: this.getHeaders() });
+    return this.http.put<any>(`${this.apiUrl}/${etat}`,equipement, { headers: this.getHeaders() });
   }
 
 }

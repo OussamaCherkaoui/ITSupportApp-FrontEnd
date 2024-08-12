@@ -51,6 +51,7 @@ export class LogInComponent implements OnInit{
       response => {
         if (response && response.token) {
           localStorage.setItem("jwt", response.token);
+          this.srvd.getToken();
           this.srvd.getIdByUsername().subscribe(
             id => {
               this.authService.setIdUser(id);
@@ -59,8 +60,11 @@ export class LogInComponent implements OnInit{
                 this.authService.loginActive();
                 if (this.user.role === Role.ADMIN) {
                   this.router.navigateByUrl("/admin");
-                } else {
-                  this.router.navigateByUrl(`/`);
+                } else if (this.user.role === Role.USER){
+                  this.router.navigateByUrl(`/user`);
+                }
+                else{
+                  this.router.navigateByUrl('/technicien');
                 }
               });
             }

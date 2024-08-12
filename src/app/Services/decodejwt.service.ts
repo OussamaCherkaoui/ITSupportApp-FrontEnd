@@ -10,18 +10,23 @@ export class DecodejwtService {
   token: string ='' ;
 
   constructor(private srv:AuthentificationService ) {
+
+  }
+
+  public getToken(){
     if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('jwt')||'';
     }
   }
-  decodeToken(token: string ) {
+
+  public decodeToken(token: string ) {
     return jwtDecode(token);
   }
   public getUsernameFromToken() :any{
     const decodedToken = this.decodeToken(this.token);
     return decodedToken.sub;
   }
-  getIdByUsername() {
+  public getIdByUsername() {
     const username = this.getUsernameFromToken();
     return this.srv.findIdByUsername(username);
   }

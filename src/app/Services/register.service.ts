@@ -25,11 +25,11 @@ export class RegisterService {
   }
 
   public registerUser(user:User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrlAdmin}/register`,user);
+    return this.http.post<any>(`${this.apiUrlUser}/register`,user);
   }
 
   public registerTechnicien(technicien:Technicien): Observable<any> {
-    return this.http.post<any>(`${this.apiUrlAdmin}/register`,technicien);
+    return this.http.post<any>(`${this.apiUrlTechnicien}/register`,technicien);
   }
 
 }

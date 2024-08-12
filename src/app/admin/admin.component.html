@@ -1,15 +1,281 @@
-<!-- Section des Utilisateurs -->
-<div class="users-section">
-  <h2 class="section-title">Utilisateurs</h2>
-  <div class="card-container">
-    <mat-card *ngFor="let user of users" class="user-card">
-      <mat-card-header>
-        <mat-card-title>{{ user.username }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p><strong>Email :</strong> {{ user.email }}</p>
-        <p><strong>Téléphone :</strong> {{ user.phone }}</p>
-      </mat-card-content>
-    </mat-card>
+
+<mat-toolbar class="app-toolbar">
+  <span class="toolbar-spacer"></span>
+  <a mat-button (click)="navigateTo('equipement')">Equipements</a>
+  <a mat-button (click)="navigateTo('panne')">Panne</a>
+  <a mat-button (click)="navigateTo('inscrit')">Ouvrir Compte</a>
+  <span class="toolbar-spacer"></span>
+</mat-toolbar>
+
+<div class="equipement" *ngIf="isEquipement">
+  <div class="equipement-section" *ngIf="showEquipements">
+    <h2 class="section-title">Equipements</h2>
+
+    <mat-card-actions class="add-equipment-action">
+      <button style="width: 60%" mat-raised-button color="primary" (click)="showAddEquipementForm()">Ajouter Equipement</button>
+    </mat-card-actions>
+
+    <div class="card-container">
+      <mat-card *ngFor="let equipement of equipements" class="equipement-card">
+        <mat-card-header>
+          <mat-card-title>{{ equipement.nom }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="image-container">
+            <img mat-card-image [src]="equipement.picture" alt="Image de l'équipement">
+          </div>
+          <p><strong>Marque :</strong> {{ equipement.marque }}</p>
+          <p><strong>Modèle :</strong> {{ equipement.modele }}</p>
+          <p><strong>Date Achat :</strong> {{ equipement.dateAchat }}</p>
+          <p><strong>Etat :</strong> {{ equipement.etat }}</p>
+          <p><strong>Date dernière réparation :</strong> {{ equipement.dateDerniereReparation }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="showUpdateEquipementForm(equipement)">Modifier</button>
+          <button mat-raised-button color="warn" (click)="deleteEquipement(equipement.id)">Supprimer</button>
+          <button mat-raised-button color="yellow" (click)="showSignalPanne(equipement.id!)">Panne Signalé</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+
+  <mat-card-actions *ngIf="!showEquipements">
+    <button mat-raised-button color="primary" (click)="hiddenEquipementForm()">Afficher les Equipements</button>
+  </mat-card-actions>
+  <div class="form-container" *ngIf="!showEquipements">
+    <h2 class="form-equipement-title" *ngIf="addEquipementForm">Ajouter Equipement</h2>
+    <h2 class="form-equipement-title" *ngIf="updateEquipementForm">Modifier Equipement</h2>
+    <form [formGroup]="equipementForm" (ngSubmit)="addEquipementForm ? addEquipement() : updateEquipement()" class="sign-up-form">
+      <div class="form-grid">
+        <mat-form-field class="form-field">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" required />
+          <mat-error *ngIf="equipementForm.get('name')?.hasError('required')">
+            name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Marque</mat-label>
+          <input matInput formControlName="marque" required />
+          <mat-error *ngIf="equipementForm.get('marque')?.hasError('required')">
+            marque is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Modèle</mat-label>
+          <input matInput formControlName="modele" required />
+          <mat-error *ngIf="equipementForm.get('modele')?.hasError('required')">
+            modele is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Etat</mat-label>
+          <input matInput formControlName="etat" required />
+          <mat-error *ngIf="equipementForm.get('etat')?.hasError('required')">
+            Etat is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Date Dernière Reparation</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="dateDerniereReparation" />
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-form-field class="form-field">
+          <mat-label>Date Achat</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateAchat" required />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="equipementForm.get('dateAchat')?.hasError('required')">
+            date Achat is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Picture</mat-label>
+          <input matInput formControlName="picture" required />
+          <mat-error *ngIf="equipementForm.get('picture')?.hasError('required')">
+            Picture is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <p *ngIf="message" class="message">{{ message }}</p>
+
+      <button *ngIf="addEquipementForm" mat-raised-button type="submit" [disabled]="equipementForm.invalid">Ajouter Equipement</button>
+      <button *ngIf="updateEquipementForm"  mat-raised-button type="submit" [disabled]="equipementForm.invalid">Modifier Equipement</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="panne" *ngIf="isPanne">
+  <div class="panne-section" *ngIf="showPannes">
+    <h2 class="section-title">Pannes</h2>
+
+    <mat-card-actions class="add-panne-action">
+      <button style="width: 60%" mat-raised-button color="primary" (click)="showAddPanneForm()">Ajouter Panne</button>
+    </mat-card-actions>
+
+    <div class="card-container">
+      <mat-card *ngFor="let panne of pannes" class="panne-card">
+        <mat-card-content>
+          <p><strong>Description :</strong> {{ panne.description }}</p>
+          <p><strong>Date Création:</strong> {{ panne.dateCreation }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="showUpdatePanneForm(panne)">Modifier</button>
+          <button mat-raised-button color="warn" (click)="deletePanne(panne.id)">Supprimer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <mat-card-actions *ngIf="!showPannes">
+    <button mat-raised-button color="primary" (click)="hiddenPanneForm()">Afficher les Pannes</button>
+  </mat-card-actions>
+
+  <div class="form-container" *ngIf="!showPannes">
+    <h2 class="form-panne-title" *ngIf="addPanneForm">Ajouter Panne</h2>
+    <h2 class="form-panne-title" *ngIf="updatePanneForm">Modifier Panne</h2>
+    <form [formGroup]="panneForm" (ngSubmit)="addPanneForm?addPanne():updatePanne()" class="sign-up-form">
+      <div class="form-grid">
+        <mat-form-field class="form-field">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" required />
+          <mat-error *ngIf="panneForm.get('description')?.hasError('required')">
+            Description is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <p *ngIf="messagePanne" class="message">{{ messagePanne }}</p>
+
+      <button *ngIf="addPanneForm" mat-raised-button type="submit" [disabled]="panneForm.invalid">Ajouter Panne</button>
+      <button *ngIf="updatePanneForm" mat-raised-button type="submit" [disabled]="panneForm.invalid">Modifier Panne</button>
+    </form>
+  </div>
+
+</div>
+<div class="inscrit" *ngIf="isRegistre">
+
+  <div class="sign-up-container">
+    <h2 class="sign-up-title">Créer un Compte</h2>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required />
+        <mat-error *ngIf="signUpForm.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" required />
+        <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">
+          Enter a valid email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" required />
+        <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">
+          Password must be at least 6 characters long
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" required />
+        <mat-error *ngIf="signUpForm.get('phone')?.hasError('required')">
+          Phone number is required
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('phone')?.hasError('pattern')">
+          Enter a valid phone number (10-15 digits)
+        </mat-error>
+      </mat-form-field>
+
+      <div class="radio-group-container">
+        <mat-label>Type</mat-label>
+        <mat-radio-group formControlName="role" required>
+          <mat-radio-button value="TECH">Technicien</mat-radio-button>
+          <mat-radio-button value="ADMIN">Admin</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <p *ngIf="messageSignUp" style="color: green;font-weight: bold" class="message">{{ messageSignUp }}</p>
+
+      <button mat-raised-button style="background-color: bisque;color: #222222" type="submit" [disabled]="signUpForm.invalid">Créer Compte</button>
+    </form>
+  </div>
+
+</div>
+
+<div *ngIf="isSignalPanne">
+  <div class="signalPanne-section">
+    <h2 class="section-title">Panne signalé</h2>
+
+    <div class="card-container">
+      <mat-card *ngFor="let panneSignale of pannesSignale"  class="equipement-card">
+        <mat-card-content>
+          <p><strong>Date Signal :</strong> {{ panneSignale.dateEnregistrement }}</p>
+          <p><strong>Etat :</strong> {{ panneSignale.etat }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="showTicketSignalPanne(panneSignale.id!)">Voir Tickets</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isTicket">
+  <div class="ticket-section">
+    <h2 class="section-title">Tickets</h2>
+
+    <div class="card-container">
+      <mat-card *ngFor="let ticket of tickets"  class="ticket-card">
+        <mat-card-content>
+          <p><strong>Date Ouverture :</strong> {{ ticket.dateOuverture }}</p>
+          <p><strong>Description :</strong> {{ ticket.description }}</p>
+          <p *ngIf="!ticket.technicien_id" style="color: #d32f2f"><strong>Non attribué</strong></p>
+          <p *ngIf="ticket.technicien_id" style="color:green"><strong>Attribué</strong></p>
+        </mat-card-content>
+
+        <div *ngIf="!ticket.technicien_id">
+          <label>Sélectionner un technicien</label>
+          <select [(ngModel)]="selectedTechnicienId" (ngModelChange)="onTechnicienChange()">
+            <option [value]="null" disabled selected>Sélectionner un technicien</option>
+            <option *ngFor="let technicien of techniciens" [value]="technicien.idUser">
+              {{ technicien.username }}
+            </option>
+          </select>
+
+        </div>
+
+        <mat-card-actions *ngIf="!ticket.technicien_id">
+          <button mat-raised-button color="primary" (click)="attribuerTechnicien(ticket.id!)">
+            Attribuer technicien
+          </button>
+        </mat-card-actions>
+
+
+      </mat-card>
+    </div>
   </div>
 </div>
