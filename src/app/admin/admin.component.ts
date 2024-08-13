@@ -101,10 +101,11 @@ export class AdminComponent implements OnInit{
 
   signUpForm: FormGroup;
   utilisateur : Utilisateur = {
-    email: '', idUser: 0, password: '', telephone: '', role: Role.ADMIN, username: ''
+    email: '', id: 0, password: '', telephone: '', role: Role.ADMIN, username: ''
   }
   messageSignUp:  string = '';
   idSignalPanne!:number;
+  attribueTechForm: FormGroup;
 
 
   constructor(
@@ -137,6 +138,9 @@ export class AdminComponent implements OnInit{
       role:['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       phone: ['', [Validators.required, Validators.pattern(/^\+?\d{10,15}$/)]]
+    });
+    this.attribueTechForm=this.fb.group({
+      idTechnicien: [0],
     });
   }
 
@@ -281,13 +285,19 @@ export class AdminComponent implements OnInit{
   navigateTo(choise: string) {
     if (choise=='equipement')
     {
+      this.tickets=[];
+      this.pannesSignale=[];
       this.goToEquipement();
     }
     else if (choise=='panne'){
+      this.tickets=[];
+      this.pannesSignale=[];
       this.goToPanne();
       this.getPannes();
     }
     else{
+      this.tickets=[];
+      this.pannesSignale=[];
       this.goToOuvrirCompte();
     }
   }
@@ -400,17 +410,12 @@ export class AdminComponent implements OnInit{
     this.getAllTechnicien();
   }
 
-  attribuerTechnicien(ticketId: number): void {
-    if (this.selectedTechnicienId)
-    {
-      console.log('ssssssssss');
+  attribuerTechnicien(ticketId:number): void {
+    this.selectedTechnicienId=this.attribueTechForm.get('idTechnicien')?.value;
       this.ticketService.attributTechnicien(ticketId,this.selectedTechnicienId).subscribe(data => {
         this.showTicketSignalPanne(this.idSignalPanne);
       });
-    }
   }
 
-  onTechnicienChange() {
-    console.log('Technicien sélectionné :', this.selectedTechnicienId);
-  }
+
 }

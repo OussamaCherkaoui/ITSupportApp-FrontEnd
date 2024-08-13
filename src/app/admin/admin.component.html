@@ -257,23 +257,15 @@
           <p *ngIf="ticket.technicien_id" style="color:green"><strong>Attribué</strong></p>
         </mat-card-content>
 
-        <div *ngIf="!ticket.technicien_id">
-          <label>Sélectionner un technicien</label>
-          <select [(ngModel)]="selectedTechnicienId" (ngModelChange)="onTechnicienChange()">
-            <option [value]="null" disabled selected>Sélectionner un technicien</option>
-            <option *ngFor="let technicien of techniciens" [value]="technicien.idUser">
-              {{ technicien.username }}
-            </option>
-          </select>
-
-        </div>
-
-        <mat-card-actions *ngIf="!ticket.technicien_id">
-          <button mat-raised-button color="primary" (click)="attribuerTechnicien(ticket.id!)">
-            Attribuer technicien
-          </button>
-        </mat-card-actions>
-
+        <form *ngIf="!ticket.technicien_id" [formGroup]="attribueTechForm" (ngSubmit)="attribuerTechnicien(ticket.id!)" class="attribueTech-form">
+          <mat-label>Choisissez un technicien</mat-label>
+          <mat-radio-group formControlName="idTechnicien" required>
+            <mat-radio-button  *ngFor="let technicien of techniciens" value='{{technicien.id}}'>{{ technicien.username }}</mat-radio-button>
+          </mat-radio-group>
+          <mat-card-actions>
+            <button mat-raised-button color="yellow" type="submit">Attribué</button>
+          </mat-card-actions>
+        </form>
 
       </mat-card>
     </div>

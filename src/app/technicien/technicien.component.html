@@ -1,1 +1,71 @@
-<p>technicien works!</p>
+<div *ngIf="isTicket">
+  <div class="ticket-section">
+    <h2 class="section-title">Tickets Assignés</h2>
+    <div class="card-container">
+      <mat-card *ngFor="let ticket of tickets"  class="ticket-card">
+        <mat-card-content>
+          <p><strong>Date Ouverture :</strong> {{ ticket.dateOuverture }}</p>
+          <p><strong>Description :</strong> {{ ticket.description }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="yellow" (click)="goToPanneSignale(ticket.id)">Voir la panne Signalé</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<mat-card-actions *ngIf="!isTicket">
+  <button mat-raised-button color="primary" (click)="goToTickets()">Voir Les Tickets Assignés</button>
+</mat-card-actions>
+
+<div *ngIf="isSignalPanne">
+  <div class="signalPanne-section">
+    <h2 class="section-title">Panne signalé</h2>
+
+    <div class="card-container">
+        <mat-card-content>
+          <p><strong>Date Signal :</strong> {{ signalPanne.dateEnregistrement }}</p>
+          <p *ngIf="!isChangeEtat"><strong>Etat :</strong> {{ signalPanne.etat }}</p>
+        </mat-card-content>
+        <mat-card-actions *ngIf="!isChangeEtat">
+          <button mat-raised-button color="primary" (click)="showFormEtat()">Changer Etat</button>
+          <button mat-raised-button color="primary" (click)="goToEquipement()">Voir l' equipement</button>
+        </mat-card-actions>
+      <form *ngIf="isChangeEtat" [formGroup]="etatForm" (ngSubmit)="updateEtat()" class="etat-form">
+        <div class="form-grid">
+          <mat-form-field class="form-field">
+            <mat-label>Etat</mat-label>
+            <input matInput formControlName="etat" required />
+            <mat-error *ngIf="etatForm.get('etat')?.hasError('required')">
+              etat is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button type="submit" [disabled]="etatForm.invalid">Modifier Etat</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="equipement-section" *ngIf="isEquipement">
+    <h2 class="section-title">Equipement Signalé</h2>
+
+    <div class="card-container">
+      <mat-card class="equipement-card">
+        <mat-card-header>
+          <mat-card-title>{{ equipement.nom }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="image-container">
+            <img mat-card-image [src]="equipement.picture" alt="Image de l'équipement">
+          </div>
+          <p><strong>Marque :</strong> {{ equipement.marque }}</p>
+          <p><strong>Modèle :</strong> {{ equipement.modele }}</p>
+          <p><strong>Date Achat :</strong> {{ equipement.dateAchat }}</p>
+          <p><strong>Etat :</strong> {{ equipement.etat }}</p>
+          <p><strong>Date dernière réparation :</strong> {{ equipement.dateDerniereReparation }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</div>

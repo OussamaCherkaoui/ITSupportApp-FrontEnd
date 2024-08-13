@@ -34,7 +34,7 @@ export class TicketService {
   }
 
   public attributTechnicien(idTicket:number,idtechnicien:number): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/${idTicket}/${idtechnicien}`, { headers: this.getHeaders() });
+    return this.http.post<any>(`${this.apiUrl}/attribuerTechnicien/${idTicket}/${idtechnicien}`, null,{ headers: this.getHeaders() });
   }
 
   public getAllTickets():Observable<any> {

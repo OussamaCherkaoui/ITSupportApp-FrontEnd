@@ -28,8 +28,8 @@ export class SignalPanneService {
     });
   }
 
-  public saveSignalPanne(signalPanne:SignalPanne): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/saveSignalPanne`,signalPanne, { headers: this.getHeaders() });
+  public saveSignalPanne(idUser:number,idEquipement:number,panneId:number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/saveSignalPanne/${idUser}/${idEquipement}/${panneId}`,null ,{ headers: this.getHeaders() });
   }
 
   public getAllSignalPanneByIdUser(id: number | undefined):Observable<any> {
@@ -44,7 +44,11 @@ export class SignalPanneService {
   public getAllSignalPannesByTechnicien(id: number | undefined):Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/getAllSignalPannesByTechnicien/${id}`, { headers: this.getHeaders() });
   }
-  public changeEtatSignalPanne(signalPanne:SignalPanne,etat:string): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${etat}`,signalPanne, { headers: this.getHeaders() });
+  public changeEtatSignalPanne(idSignalPanne:number,etat:string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/changeEtatSignalPanne/${idSignalPanne}/${etat}`, null,{ headers: this.getHeaders() });
+  }
+
+  getSignalPanneByIdTicket(id: number | undefined) {
+    return this.http.get<any>(`${this.apiUrl}/getSignalPannesByIdTicket/${id}`, { headers: this.getHeaders() });
   }
 }

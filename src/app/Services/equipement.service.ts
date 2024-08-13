@@ -44,4 +44,7 @@ export class EquipementService {
     return this.http.put<any>(`${this.apiUrl}/${etat}`,equipement, { headers: this.getHeaders() });
   }
 
+  public getEquipementByIdSignalPanne(id: number | undefined) {
+    return this.http.get<any>(`${this.apiUrl}/getEquipementByIdSignalPanne/${id}`, { headers: this.getHeaders() });
+  }
 }

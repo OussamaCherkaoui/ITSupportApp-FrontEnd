@@ -23,11 +23,12 @@ export class DecodejwtService {
     return jwtDecode(token);
   }
   public getUsernameFromToken() :any{
+    this.getToken();
     const decodedToken = this.decodeToken(this.token);
     return decodedToken.sub;
   }
   public getIdByUsername() {
-    const username = this.getUsernameFromToken();
+    const username = this.getUsernameFromToken()
     return this.srv.findIdByUsername(username);
   }
 

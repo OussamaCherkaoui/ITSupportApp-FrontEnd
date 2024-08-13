@@ -31,9 +31,10 @@ export class NavbarComponent implements OnInit{
         this.isLoggedIn = loggedIn;
       }
     );
+    this.userName=this.decodeJwt.getUsernameFromToken();
   }
 
-  userName:string=(this.isLoggedIn)?this.decodeJwt.getUsernameFromToken():'';
+  userName!:string;
 
   logout() {
     this.authService.logout();

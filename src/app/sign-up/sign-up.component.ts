@@ -28,7 +28,7 @@ import {RegisterService} from "../Services/register.service";
 export class SignUpComponent implements OnInit{
   signUpForm: FormGroup;
   user : User = {
-    email: '', idUser: 0, password: '', telephone: '', role: Role.USER, username: ''
+    email: '', id: 0, password: '', telephone: '', role: Role.USER, username: ''
   }
   message:  string = '';
 

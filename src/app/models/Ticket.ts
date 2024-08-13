@@ -3,7 +3,7 @@ export class Ticket {
   dateOuverture?: string;
   description?: string;
   signalPanne_id?: number;
-  technicien_id?: number;
+  technicien_id!: number;
 
 
   constructor(data?: Partial<Ticket>) {
@@ -12,7 +12,7 @@ export class Ticket {
       this.dateOuverture = data.dateOuverture;
       this.description = data.description;
       this.signalPanne_id = data.signalPanne_id;
-      this.technicien_id = data.technicien_id;
+      this.technicien_id!= data.technicien_id;
     }
   }
 }

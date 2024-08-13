@@ -1,7 +1,7 @@
 import {Role} from "./Role";
 
 export class Utilisateur {
-  idUser?:number;
+  id?:number;
   username: string | undefined;
   password: string|undefined;
   email: string|undefined;
@@ -10,7 +10,7 @@ export class Utilisateur {
 
   constructor(data?: Partial<Utilisateur>) {
     if (data) {
-      this.idUser = data.idUser;
+      this.id = data.id;
       this.username = data.username;
       this.password = data.password;
       this.email = data.email;

@@ -1,0 +1,107 @@
+
+.app-toolbar {
+  background-color: #3f51b5; /* Primary color for the toolbar */
+  color: white; /* Text color */
+  justify-content: center; /* Center items horizontally */
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto; /* Flexible spacer to push items to the center */
+}
+
+a {
+  color: white; /* Link color */
+  font-weight: bold; /* Make links bold */
+  margin: 0 15px; /* Space between links */
+}
+
+a:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Slight background on hover */
+  border-radius: 4px; /* Rounded corners for hover effect */
+}
+
+.equipement-section,.ticket-section,.signalPanne-section{
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Conteneur des cartes d'équipements */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Style pour chaque carte d'équipement */
+.equipement-card {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.equipement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.mat-card-header {
+  background-color: #00796b;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.mat-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Style pour le contenu de la carte */
+.mat-card-content {
+  padding: 16px;
+}
+
+/* Conteneur d'image avec bordure arrondie */
+.image-container {
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover; /* Assure que l'image couvre le conteneur tout en gardant ses proportions */
+}
+
+/* Style pour les actions en bas de la carte */
+.mat-card-actions {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  background-color: #f1f1f1;
+}
+
+.mat-card-actions button {
+  margin: 4px;
+}
+
+/* Style pour les boutons */
+.mat-raised-button {
+  border-radius: 4px;
+  font-size: 0.875rem;
+  text-transform: none;
+}
