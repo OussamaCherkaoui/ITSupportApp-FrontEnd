@@ -1,7 +1,7 @@
 footer {
-  background-color: #333;
+  background-color:#343a40;
   color: white;
-  padding: 40px 20px;
+  padding: 20px 0px;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -18,43 +18,13 @@ h2 {
   text-align: center;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
 
-mat-form-field {
-  width: 100%;
-  margin-bottom: 20px;
-}
 
-mat-form-field .mat-form-field-flex {
-  background-color: #444;
-  color: #ddd;
-}
-
-mat-form-field mat-label {
-  color: #ddd;
-}
-
-mat-form-field mat-error {
-  color: #f44336;
-}
-
-textarea {
-  resize: vertical;
-}
-
-button {
-  align-self: center;
-  padding: 10px 20px;
-}
 
 mat-toolbar {
-  background-color: #222;
+  background-color: #586060;
   color: white;
-  padding: 10px 20px;
-  margin-top: 20px;
+  padding: 10px 10px;
 }
 
 h3 {
@@ -63,18 +33,4 @@ h3 {
 
 .spacer {
   flex: 1;
-}
-
-@media (max-width: 600px) {
-  h2 {
-    font-size: 24px;
-  }
-
-  mat-form-field {
-    margin-bottom: 15px;
-  }
-
-  button {
-    width: 100%;
-  }
 }

@@ -21,30 +21,31 @@
           </div>
           <p><strong>Marque :</strong> {{ equipement.marque }}</p>
           <p><strong>Modèle :</strong> {{ equipement.modele }}</p>
-          <p><strong>Date Achat :</strong> {{ equipement.dateAchat }}</p>
+          <p><strong>Date Achat :</strong> {{ equipement.dateAchat | date:'dd MMMM yyyy' }}</p>
           <p><strong>Etat :</strong> {{ equipement.etat }}</p>
           <p><strong>Date dernière réparation :</strong> {{ equipement.dateDerniereReparation }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="yellow" (click)="signalPanne(equipement.id!)">Signalé une panne</button>
+          <button mat-raised-button class="signalButton" style="background-color: #ffeb3b" (click)="signalPanne(equipement.id!)">Signalé une panne</button>
         </mat-card-actions>
       </mat-card>
     </div>
   </div>
 </div>
 
-
-<div class="form-grid" *ngIf="formSignalPanne">
-  <form [formGroup]="signalForm" (ngSubmit)="confirmSignalement()" class="signalPanne-form">
-  <mat-label>Panne</mat-label>
-  <mat-radio-group formControlName="idPanne" required>
-    <mat-radio-button  *ngFor="let panne of pannes" value='{{panne.id}}'>{{ panne.description }}</mat-radio-button>
-  </mat-radio-group>
-    <p *ngIf="messageSignalement" style="color: green;font-weight: bold" class="message">{{ messageSignalement }}</p>
-    <mat-card-actions>
-    <button mat-raised-button color="yellow" type="submit">Confirmer le signalement</button>
-  </mat-card-actions>
-  </form>
+<div class="form-container" *ngIf="formSignalPanne">
+  <div class="signalPanne-form">
+    <form [formGroup]="signalForm" (ngSubmit)="confirmSignalement()" class="signalPanne-form">
+      <mat-label>Panne</mat-label>
+      <mat-radio-group formControlName="idPanne" required>
+        <mat-radio-button *ngFor="let panne of pannes" [value]="panne.id">{{ panne.description }}</mat-radio-button>
+      </mat-radio-group>
+      <p *ngIf="messageSignalement" class="message">{{ messageSignalement }}</p>
+      <mat-card-actions>
+        <button mat-raised-button color="yellow" type="submit">Confirmer le signalement</button>
+      </mat-card-actions>
+    </form>
+  </div>
 </div>
 
 <div *ngIf="isSignalPanne">
@@ -74,7 +75,7 @@
     <div class="card-container">
       <mat-card *ngFor="let ticket of tickets"  class="ticket-card">
         <mat-card-content>
-          <p><strong>Date Ouverture :</strong> {{ ticket.dateOuverture }}</p>
+          <p><strong>Date Ouverture :</strong> {{ ticket.dateOuverture | date:'dd MMMM yyyy' }}</p>
           <p><strong>Description :</strong> {{ ticket.description }}</p>
           <p *ngIf="!ticket.technicien_id" style="color: #d32f2f"><strong>Non attribué</strong></p>
           <p *ngIf="ticket.technicien_id" style="color:green"><strong>Attribué</strong></p>

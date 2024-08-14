@@ -5,6 +5,7 @@ import {NgIf} from "@angular/common";
 import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
 import {MatAnchor, MatButton, MatButtonModule} from "@angular/material/button";
 import {DecodejwtService} from "../Services/decodejwt.service";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,8 @@ import {DecodejwtService} from "../Services/decodejwt.service";
     NgIf,
     MatToolbarModule,
     MatAnchor,
-    MatButtonModule
+    MatButtonModule,
+    MatIcon
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -28,15 +30,16 @@ export class NavbarComponent implements OnInit{
   ngOnInit(): void {
     this.authService.isLoggedIn.subscribe(
       (loggedIn: boolean) => {
+        this.userName=this.decodeJwt.getUsernameFromToken();
         this.isLoggedIn = loggedIn;
       }
     );
-    this.userName=this.decodeJwt.getUsernameFromToken();
   }
 
   userName!:string;
 
   logout() {
+    this.isLoggedIn=false;
     this.authService.logout();
     this.router.navigateByUrl('/');
   }

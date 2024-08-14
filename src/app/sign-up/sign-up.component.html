@@ -44,5 +44,6 @@
     <p *ngIf="message" style="color: green;font-weight: bold" class="message">{{ message }}</p>
 
     <button mat-raised-button style="background-color: bisque;color: #222222" type="submit" [disabled]="signUpForm.invalid">Créer Compte</button>
+    <button mat-raised-button style="background-color: bisque;color: #222222" (click)="goToLogin()">Se Connecter</button>
   </form>
 </div>

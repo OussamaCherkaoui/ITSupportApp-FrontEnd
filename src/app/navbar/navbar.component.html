@@ -1,14 +1,19 @@
 <mat-toolbar class="custom-toolbar">
-  <div class="nav-content">
-    <a mat-button routerLink="/"><img style="width: 120px" src="./assets/pictures/logo_JB.png"></a>
-    <div *ngIf="!isLoggedIn">
-      <a mat-button routerLink="/signUp">S'inscrire</a>
-    </div>
-    <div *ngIf="isLoggedIn">
-      <p>Hello {{userName}}</p>
-    </div>
-    <div *ngIf="isLoggedIn">
-      <a mat-button (click)="logout()">Se déconnecter</a>
+  <div class="toolbar-content">
+    <a mat-button class="logo">
+      <img src="./assets/pictures/logo.png" alt="Logo">
+    </a>
+    <div class="nav-links">
+      <ng-container *ngIf="!isLoggedIn">
+        <a mat-button routerLink="/signUp">S'inscrire</a>
+      </ng-container>
+      <ng-container *ngIf="isLoggedIn">
+        <div class="user-info">
+          <mat-icon class="user-icon">account_circle</mat-icon>
+          <span>{{ userName }}</span>
+        </div>
+        <a mat-button (click)="logout()">Se déconnecter</a>
+      </ng-container>
     </div>
   </div>
 </mat-toolbar>

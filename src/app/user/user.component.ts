@@ -9,7 +9,7 @@ import {
   MatCardImage,
   MatCardTitle
 } from "@angular/material/card";
-import {NgForOf, NgIf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {EquipementService} from "../Services/equipement.service";
 import {TechnicienService} from "../Services/technicien.service";
@@ -49,7 +49,8 @@ import {tick} from "@angular/core/testing";
     MatLabel,
     ReactiveFormsModule,
     MatRadioButton,
-    MatRadioGroup
+    MatRadioGroup,
+    DatePipe
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'

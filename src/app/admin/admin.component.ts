@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardContent, MatCardHeader, MatCardModule,} from "@angular/material/card";
-import {NgForOf, NgIf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
@@ -53,7 +53,8 @@ import {TechnicienService} from "../Services/technicien.service";
     MatRadioGroup,
     MatRadioButton,
     MatSelect,
-    MatOption
+    MatOption,
+    DatePipe
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'

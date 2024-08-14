@@ -1,39 +1,45 @@
-
 .app-toolbar {
-  background-color: #3f51b5; /* Primary color for the toolbar */
-  color: white; /* Text color */
-  justify-content: center; /* Center items horizontally */
+  background-color: wheat;
+  color: #ffffff;
+  height: 64px;
+  padding: 0 16px;
 }
 
 .toolbar-spacer {
-  flex: 1 1 auto; /* Flexible spacer to push items to the center */
+  flex: 1 1 auto;
 }
 
-a {
-  color: white; /* Link color */
-  font-weight: bold; /* Make links bold */
-  margin: 0 15px; /* Space between links */
+a.mat-button {
+  color: #ffffff;
+  font-weight: 500;
+  margin: 0 15px;
 }
 
-a:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Slight background on hover */
-  border-radius: 4px; /* Rounded corners for hover effect */
+a.mat-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
-.equipement-section,.ticket-section,.signalPanne-section{
-  padding: 20px;
+
+.equipement-section,
+.signalPanne-section,
+.ticket-section {
+  padding: 30px;
   background-color: #f4f4f4;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .section-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #333;
-  margin-bottom: 30px;
+  color: #333333;
   text-align: center;
+  margin-bottom: 20px;
 }
 
-/* Conteneur des cartes d'équipements */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -41,8 +47,8 @@ a:hover {
   justify-content: center;
 }
 
-/* Style pour chaque carte d'équipement */
-.equipement-card {
+.equipement-card,
+.ticket-card {
   width: 100%;
   max-width: 350px;
   border-radius: 8px;
@@ -52,13 +58,81 @@ a:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.equipement-card:hover {
-  transform: translateY(-5px);
+.equipement-card:hover,
+.ticket-card:hover {
+  transform: translateY(-8px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
+.signalPanne-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+
+mat-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+
+mat-radio-button {
+  margin-bottom: 12px;
+}
+
+mat-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+
+.message {
+  color: #4caf50;
+  font-weight: bold;
+  text-align: center;
+  margin: 16px 0;
+  font-size: 1rem;
+}
+
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+button.mat-raised-button[color="yellow"] {
+  background-color: #ffeb3b;
+  color: #333333;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 12px 24px;
+  text-transform: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+button.mat-raised-button[color="yellow"]:hover {
+  background-color: #fdd835;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .mat-card-header {
-  background-color: #00796b;
+  background-color: #3f51b5;
   color: #ffffff;
   padding: 16px;
 }
@@ -68,12 +142,12 @@ a:hover {
   font-weight: 600;
 }
 
-/* Style pour le contenu de la carte */
+
 .mat-card-content {
   padding: 16px;
+  color: #555555;
 }
 
-/* Conteneur d'image avec bordure arrondie */
 .image-container {
   overflow: hidden;
   border-radius: 4px;
@@ -84,10 +158,10 @@ a:hover {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover; /* Assure que l'image couvre le conteneur tout en gardant ses proportions */
+  object-fit: cover;
 }
 
-/* Style pour les actions en bas de la carte */
+
 .mat-card-actions {
   padding: 8px;
   display: flex;
@@ -99,9 +173,121 @@ a:hover {
   margin: 4px;
 }
 
-/* Style pour les boutons */
+
 .mat-raised-button {
   border-radius: 4px;
   font-size: 0.875rem;
   text-transform: none;
+}
+
+
+.mat-raised-button[color="yellow"] {
+  background-color: #ffeb3b;
+  color: #333333;
+}
+
+.mat-raised-button[color="primary"] {
+  background-color: #3f51b5;
+  color: #ffffff;
+}
+
+.mat-raised-button[color="warn"] {
+  background-color: #d32f2f;
+  color: #ffffff;
+}
+
+
+.form-container,
+.add-Ticket-form {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-equipement-title,
+.sign-up-title {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.message {
+  color: #4caf50;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+
+button.mat-raised-button {
+  background-color: #6200ea;
+  color: #ffffff;
+  margin-top: 20px;
+  width: 100%;
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button.mat-raised-button:hover {
+  background-color: #3700b3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.mat-form-field mat-label {
+  color: #555555;
+}
+
+.mat-form-field .mat-form-field-infix {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.mat-form-field .mat-form-field-flex {
+  color: #333333;
+}
+
+.mat-error {
+  font-size: 0.875rem;
+  color: #d32f2f;
+}
+
+
+@media (max-width: 600px) {
+  .sign-up-container {
+    width: 90%;
+  }
+}
+
+.radio-group-container {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-radio-button {
+  margin-bottom: 8px;
 }

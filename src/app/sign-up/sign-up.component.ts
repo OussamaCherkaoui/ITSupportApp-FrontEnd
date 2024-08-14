@@ -8,6 +8,7 @@ import {User} from "../models/User";
 import {AuthentificationService} from "../Services/authentification.service";
 import {Role} from "../models/Role";
 import {RegisterService} from "../Services/register.service";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +21,8 @@ import {RegisterService} from "../Services/register.service";
     MatError,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
@@ -32,7 +34,7 @@ export class SignUpComponent implements OnInit{
   }
   message:  string = '';
 
-  constructor(private fb: FormBuilder,private registerService:RegisterService) {
+  constructor(private fb: FormBuilder,private registerService:RegisterService,private router: Router) {
     this.signUpForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -60,5 +62,9 @@ export class SignUpComponent implements OnInit{
   }
 
   ngOnInit(): void {
+  }
+
+  goToLogin() {
+    this.router.navigateByUrl("/");
   }
 }

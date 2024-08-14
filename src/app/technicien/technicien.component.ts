@@ -7,7 +7,7 @@ import {
   MatCardImage,
   MatCardTitle
 } from "@angular/material/card";
-import {NgForOf, NgIf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import {Ticket} from "../models/Ticket";
 import {MatButton} from "@angular/material/button";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -45,7 +45,8 @@ import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/m
     MatDatepicker,
     MatDatepickerInput,
     MatDatepickerToggle,
-    MatSuffix
+    MatSuffix,
+    DatePipe
   ],
   templateUrl: './technicien.component.html',
   styleUrl: './technicien.component.css'
