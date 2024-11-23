@@ -1,8 +1,8 @@
 .custom-toolbar {
-  background-color:khaki;
+  background-color:#6c757d;
   color: #ffffff;
   padding: 20px 30px;
-  height: max(110px);
+  height: max(80px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -16,7 +16,7 @@
   padding-top:10px;
 }
 .logo img {
-  width: 120px;
+  width: 100px;
   height: auto;
 }
 
@@ -47,4 +47,22 @@
 
 .mat-icon {
   color: #ecf0f1;
+}
+.auth a {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.auth a  {
+  gap: 10px;
+}
+
+
+.auth {
+  margin-left: 60px;
+}
+
+.auth a:hover {
+  color: #fff8d1;
 }

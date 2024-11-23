@@ -4,9 +4,14 @@
       <img src="./assets/pictures/logo.png" alt="Logo">
     </a>
     <div class="nav-links">
-      <ng-container *ngIf="!isLoggedIn">
-        <a mat-button routerLink="/signUp">S'inscrire</a>
-      </ng-container>
+      <div class="auth d-flex align-items-center justify-content-center" *ngIf="!isLoggedIn">
+        <a mat-button routerLink="/logIn">
+          <span class="material-icons">login</span> Se connecter
+        </a>
+        <a mat-button routerLink="/signUp">
+          <span class="material-icons">person_add</span> S' inscrire
+        </a>
+      </div>
       <ng-container *ngIf="isLoggedIn">
         <div class="user-info">
           <mat-icon class="user-icon">account_circle</mat-icon>
